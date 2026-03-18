@@ -8,7 +8,7 @@ st.title("Team Selection Dashboard")
 
 # --- CONNECT TO DATA ---
 # Replace the URL below with your actual Google Sheet link
-url = "https://docs.google.com/spreadsheets/d/1lKxXGeG_VlDMT8JQ1Dip63To8seOA59w4IvSFNPhaAs/edit?gid=0#gid=0"
+url = "https://docs.google.com/spreadsheets/d/1lKxXGeG_VlDMT8JQ1Dip63To8seOA59w4IvSFNPhaAs/edit?usp=sharing"
 conn = st.connection("gsheets", type=GSheetsConnection)
 
 # Read the 'Roster' and 'Physical_Tests' tabs
