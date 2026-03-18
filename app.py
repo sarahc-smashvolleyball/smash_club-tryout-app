@@ -1,23 +1,30 @@
 import streamlit as st
 import pandas as pd
 
-st.set_page_config(page_title="Club Tryouts", layout="wide")
-st.title("🏐 Volleyball Tryout Leaderboard")
+# 1. PASTE YOUR ID BETWEEN THE QUOTES BELOW
+SHEET_ID = "Club_Tryouts_Data_2026"
 
-# --- DATA CONNECTION ---
-# 1. Use your Sheet URL but change the end to /export?format=csv
-# 2. To get specific tabs, you need the 'gid' number from the end of the URL for that tab
-roster_url = "https://docs.google.com/spreadsheets/d/1lKxXGeG_VlDMT8JQ1Dip63To8seOA59w4IvSFNPhaAs//export?format=csv&gid="
+# This builds the direct download link for the first tab
+url = f"https://docs.google.com/spreadsheets/d/1lKxXGeG_VlDMT8JQ1Dip63To8seOA59w4IvSFNPhaAs/export?format=csv"
+
+st.set_page_config(page_title="Club Tryouts", layout="wide")
+st.title("SMASH Volleyball Tryout Leaderboard")
+
 try:
-    # Read the data
-    df = pd.read_csv(roster_url)
+    # Read the data directly using pandas
+    df = pd.read_csv(url)
     
-    st.success("Connected to Google Sheets!")
-    
-    # Show the table
-    st.subheader("Player Roster")
-    st.dataframe(df, use_container_width=True)
+    if st.success("Connected to Google Sheets!"):
+        st.subheader("Current Roster")
+        st.dataframe(df, use_container_width=True)
+        
+        # Simple stats check
+        if 'Height' in df.columns:
+            st.metric("Avg Height", f"{df['Height'].mean():.1f}\"")
 
 except Exception as e:
-    st.error(f"Still can't connect. Error: {e}")
-    st.info("Check: Is the Google Sheet set to 'Anyone with the link can view'?")
+    st.error("Connection Failed")
+    st.write("Troubleshooting Steps:")
+    st.write("1. Make sure your Google Sheet is set to 'Anyone with the link can view'.")
+    st.write(f"2. Check if this link works in your browser: [Click to test link]({url})")
+    st.write(f"Technical Error: {e}")
