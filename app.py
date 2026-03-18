@@ -5,7 +5,7 @@ import pandas as pd
 SHEET_ID = "Club_Tryouts_Data_2026"
 
 # This builds the direct download link for the first tab
-url = f"https://docs.google.com/spreadsheets/d/1lKxXGeG_VlDMT8JQ1Dip63To8seOA59w4IvSFNPhaAs/export?format=csv"
+url = f"https://docs.google.com/spreadsheets/d/1lKxXGeG_VlDMT8JQ1Dip63To8seOA59w4IvSFNPhaAs/export?format=csv&gid=0"
 
 st.set_page_config(page_title="Club Tryouts", layout="wide")
 st.title("SMASH Volleyball Tryout Leaderboard")
